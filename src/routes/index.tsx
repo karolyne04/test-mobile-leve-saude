@@ -5,6 +5,8 @@ import LoginScreen from '../screens/LoginScreen';
 
 import HomeScreen from '../screens/HomeScreen';
 
+import FeedbackFormScreen from '../screens/FeedbackFormScreen';
+
 
 export type RootStackParamList = {
     Login: undefined;
@@ -20,6 +22,7 @@ export default function Routes() {
             <Stack.Screen name="Login" component={LoginScreen} />
             {/* <Stack.Screen name="Register" component={RegisterScreen} /> */}
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="FeedbackFormScreen" component={FeedbackFormScreen} />
         </Stack.Navigator>
     );
 }

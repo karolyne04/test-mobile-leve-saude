@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, Button, StyleSheet, Alert, ActivityIndicator } from 'react-native'
+import { View, Text, TextInput, StyleSheet, Alert, ActivityIndicator, TouchableOpacity } from 'react-native'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../services/firebase'
+import colors from '../theme/colors'
+import Button from '../components/Button'
+import Input from '../components/Input'
 
 export default function LoginScreen({ navigation }: any) {
     const [email, setEmail] = useState('')
@@ -28,29 +31,34 @@ export default function LoginScreen({ navigation }: any) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Entrar</Text>
+            <Text style={styles.title}>Faça login</Text>
 
-            <TextInput
-                placeholder="E-mail"
+            <Input
+                placeholder="Email"
                 value={email}
+                icon="mail"
                 onChangeText={setEmail}
-                keyboardType="email-address"
                 autoCapitalize="none"
-                style={styles.input}
+                keyboardType="email-address"
             />
 
-            <TextInput
+            <Input
                 placeholder="Senha"
+                icon="lock"
+                secureTextEntry
                 value={password}
                 onChangeText={setPassword}
-                secureTextEntry
-                style={styles.input}
+                secureText
+                autoCapitalize="none"
             />
 
             {loading ? (
                 <ActivityIndicator size="large" color="#03989e" />
             ) : (
-                <Button title="Entrar" onPress={handleLogin} />
+                // <Button title="Entrar" onPress={handleLogin} />
+                <Button
+                    title="Entrar"
+                    onPress={handleLogin} />
             )}
         </View>
     )
@@ -61,7 +69,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 24,
         justifyContent: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: colors.background,
     },
     title: {
         fontSize: 24,
@@ -76,5 +84,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         marginBottom: 16,
         borderRadius: 8,
+    },
+    button: {
+        backgroundColor: colors.primary,
+        paddingVertical: 12,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
     },
 })
