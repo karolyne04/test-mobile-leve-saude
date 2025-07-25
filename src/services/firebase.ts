@@ -1,10 +1,10 @@
 // src/services/firebase.ts
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getFirestore } from 'firebase/firestore';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getFirestore } from "firebase/firestore";
 
-import { getAuth } from 'firebase/auth';
+import { getAuth } from "firebase/auth";
 
 import {
   FIREBASE_API_KEY,
@@ -13,7 +13,7 @@ import {
   FIREBASE_STORAGE_BUCKET,
   FIREBASE_MESSAGING_SENDER_ID,
   FIREBASE_APP_ID,
-} from '@env';
+} from "@env";
 
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
@@ -29,6 +29,5 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 const db = getFirestore(app);
-
 
 export { auth, db };
