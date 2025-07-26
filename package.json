@@ -1,7 +1,7 @@
 {
   "name": "test-mobile-leve-saude",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-native-masked-view/masked-view": "0.3.2",
-    "@react-navigation/native": "^7.1.15",
+    "@react-navigation/native": "^7.1.6",
     "@react-navigation/stack": "^7.4.2",
     "expo": "~53.0.20",
     "expo-router": "~5.1.4",
@@ -23,7 +23,8 @@
     "react-native": "0.79.5",
     "react-native-dotenv": "^3.4.11",
     "react-native-gesture-handler": "~2.24.0",
-    "react-native-toast-message": "^2.3.3"
+    "react-native-toast-message": "^2.3.3",
+    "expo-constants": "~17.1.7"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
