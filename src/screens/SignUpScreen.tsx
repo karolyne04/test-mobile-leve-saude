@@ -17,6 +17,8 @@ import Input from "../components/Input";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 import Button from "../components/Button";
+import { showError, showSuccess, showWarning } from "../utils/toast";
+import InputPassword from "../components/ InputPassword";
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +29,8 @@ const SignUpScreen = () => {
 
   const handleSignUp = async () => {
     if (!email || !password || !name) {
-      Alert.alert("Erro", "Preencha todos os campos.");
+
+      showWarning("Preencha todos os campos.");
       return;
     }
 
@@ -47,11 +50,11 @@ const SignUpScreen = () => {
         createdAt: new Date().toISOString(),
       });
 
-      Alert.alert("Conta criada com sucesso!");
+      showSuccess('Usuário criado com sucesso!');
       navigation.navigate("Home");
     } catch (error: any) {
-      console.error("Erro ao criar conta:", error);
-      Alert.alert("Erro", error.message || "Não foi possível criar a conta.");
+      // console.error("Erro ao criar conta:", error);
+      showError(error.message || "Não foi possível criar a conta.");
     } finally {
       setLoading(false);
     }
@@ -69,13 +72,11 @@ const SignUpScreen = () => {
         keyboardType="email-address"
         icon="mail"
       />
-      <Input
+      <InputPassword
         placeholder="Senha"
         value={password}
         onChangeText={setPassword}
-        secureTextEntry
-        autoCapitalize="none"
-        icon="lock"
+
       />
       <Input
         placeholder="Nome"
@@ -110,34 +111,17 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     textAlign: "center",
   },
-  input: {
-    backgroundColor: "#fff",
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 16,
-    borderColor: colors.textSecondary,
-    borderWidth: 1,
-  },
-  button: {
-    backgroundColor: colors.primary,
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: "center",
-    marginBottom: 12,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
   link: {
     textAlign: "center",
     color: colors.primary,
     marginTop: 12,
+    fontWeight: "bold",
   },
   logo: {
     width: 200,
     height: 200,
-    alignSelf: "center",
+    resizeMode: 'contain',
+    alignSelf: 'center',
     marginBottom: 24,
   },
 });

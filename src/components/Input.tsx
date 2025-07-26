@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({ icon, secureText = false, ...rest }) => {
     <View
       style={[
         styles.container,
-        isFocused && styles.containerFocused, // Aplica o estilo com foco
+        isFocused && styles.containerFocused,
       ]}
     >
       {icon && (
@@ -40,19 +40,23 @@ const Input: React.FC<InputProps> = ({ icon, secureText = false, ...rest }) => {
         secureTextEntry={isSecure}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        autoCapitalize="none"
         {...rest}
       />
 
       {secureText && (
-        <TouchableOpacity onPress={() => setIsSecure(!isSecure)}>
+        <TouchableOpacity
+          onPress={() => setIsSecure(!isSecure)}
+          style={styles.eyeButton}
+        >
           <Feather
             name={isSecure ? "eye-off" : "eye"}
             size={20}
             color={isFocused ? colors.primary : colors.textSecondary}
-            style={styles.icon}
           />
         </TouchableOpacity>
       )}
+
     </View>
   );
 };
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
   },
   containerFocused: {
     borderColor: colors.primary, // Cor verde destaque ao focar
-    backgroundColor: colors.backgrounds, // Leve mudança no fundo opcional
+    backgroundColor: colors.background, // Leve mudança no fundo opcional
   },
   input: {
     flex: 1,
@@ -80,6 +84,10 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginHorizontal: 4,
+  },
+  eyeButton: {
+    padding: 4,
+    marginLeft: 8,
   },
 });
 

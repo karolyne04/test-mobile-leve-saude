@@ -10,9 +10,8 @@
       "android": {
         "buildType": "apk"
       },
-      "ios": {
-        "simulator": true
-      }
+       "autoIncrement": true
+     
     },
     "preview": {
       "distribution": "internal"

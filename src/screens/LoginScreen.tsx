@@ -5,6 +5,9 @@ import { auth } from '../services/firebase'
 import colors from '../theme/colors'
 import Button from '../components/Button'
 import Input from '../components/Input'
+import { showError, showWarning } from '../utils/toast'
+import InputPassword from '../components/ InputPassword'
+
 
 export default function LoginScreen({ navigation }: any) {
     const [email, setEmail] = useState('')
@@ -13,7 +16,9 @@ export default function LoginScreen({ navigation }: any) {
 
     const handleLogin = async () => {
         if (!email || !password) {
-            return Alert.alert('Erro', 'Preencha todos os campos')
+            showWarning('Preencha todos os campos');
+            return
+
         }
 
         setLoading(true)
@@ -22,8 +27,10 @@ export default function LoginScreen({ navigation }: any) {
             await signInWithEmailAndPassword(auth, email, password)
 
             navigation.navigate('Home')
+
         } catch (error: any) {
             Alert.alert('Erro no login', error.message)
+            showError('Erro ao fazer login');
         } finally {
             setLoading(false)
         }
@@ -43,18 +50,16 @@ export default function LoginScreen({ navigation }: any) {
                 keyboardType="email-address"
             />
 
-            <Input
+
+
+            <InputPassword
                 placeholder="Senha"
-                icon="lock"
-                secureTextEntry
                 value={password}
                 onChangeText={setPassword}
-                secureText
-                autoCapitalize="none"
             />
 
             {loading ? (
-                <ActivityIndicator size="large" color="#03989e" />
+                <ActivityIndicator size="large" color={colors.secondarys} />
             ) : (
 
                 <Button
@@ -80,11 +85,12 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: 'center',
-        backgroundColor: "#fff",
+        backgroundColor: colors.background,
     },
     logo: {
         width: 200,
         height: 200,
+        resizeMode: 'contain',
         alignSelf: 'center',
         marginBottom: 24,
     },
@@ -95,23 +101,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: colors.text,
     },
-    input: {
-        height: 48,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        paddingHorizontal: 12,
-        marginBottom: 16,
-        borderRadius: 8,
-    },
-    button: {
-        backgroundColor: colors.primary,
-        paddingVertical: 12,
-        borderRadius: 8,
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-        fontWeight: '600',
-    },
+
+
 })
