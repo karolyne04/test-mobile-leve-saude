@@ -8,29 +8,7 @@
       "android": {
         "buildType": "apk",
         "gradleCommand": ":app:assembleRelease"
-      },
-      "env": {
-        "EXPO_PUBLIC_API_URL": "your-api-url-here"
-      }
-    },
-    "preview2": {
-      "android": {
-        "gradleCommand": ":app:assembleRelease"
-      }
-    },
-    "preview3": {
-      "developmentClient": true
-    },
-    "preview4": {
-      "distribution": "internal"
-    },
-    "production": {
-      "android": {
-        "buildType": "aab"
       }
     }
-  },
-  "submit": {
-    "production": {}
   }
 }
