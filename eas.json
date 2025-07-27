@@ -1,22 +1,32 @@
 {
   "cli": {
-    "version": ">= 16.16.0",
+    "version": ">= 3.0.0",
     "appVersionSource": "remote"
   },
-  "build": {
-    "preview": {
+   "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
       "android": {
-        "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
+        "buildType": "apk"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle"
       },
-      "env": {
-        "FIREBASE_API_KEY": "from-env",
-        "FIREBASE_AUTH_DOMAIN": "from-env",
-        "FIREBASE_PROJECT_ID": "from-env",
-        "FIREBASE_STORAGE_BUCKET": "from-env",
-        "FIREBASE_MESSAGING_SENDER_ID": "from-env",
-        "FIREBASE_APP_ID": "from-env"
+      "ios": {
+        "simulator": false
       }
     }
+  },
+  "submit": {
+    "production": {}
   }
 }
