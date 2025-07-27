@@ -78,7 +78,90 @@ Scripts úteis:
 
 npm run lint       # verifica problemas de lint
 npm run format     # formata o código com Prettier
-📲 EAS Build (Modo Desenvolvimento)
 
-eas build --profile development --platform android ou eas build -p android --profile preview
-Gera o APK para testes em dispositivos físicos com perfil de desenvolvimento.  
+📲 EAS Build (Modo Desenvolvimento)
+# 📲 EAS Build – Perfis, Comandos e Fluxo de Desenvolvimento
+
+Este projeto mobile utiliza o **EAS Build (Expo Application Services)** para gerar builds com diferentes finalidades, como desenvolvimento, testes internos e produção.
+
+---
+
+## ✅ Pré-requisitos
+
+- Node.js instalado (recom. v16+)
+- `eas-cli` instalado globalmente:
+  ```bash
+  npm install -g eas-cli
+Login na conta Expo:
+
+eas login
+Projeto já iniciado com EAS:
+
+
+eas init
+🔗 Guia oficial EAS Build
+🔗 Seus builds no Expo
+
+{
+  "cli": {
+    "version": ">= 16.16.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "ios": {
+        "simulator": false
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
+
+ Perfis de Build
+🔹 development – Desenvolvimento com Expo Dev Client
+
+eas build --profile development --platform android
+Gera um .apk para uso com o Expo Dev Client
+
+Ideal para testar código com bibliotecas nativas
+
+Necessário instalar o Dev Client no celular
+
+ Instalar Expo Dev Client no celular:
+Instale o Expo Go pela Play Store
+
+Ao abrir o .apk gerado com o perfil development, ele instalará um custom client
+
+Use npx expo start --dev-client para rodar local
+
+preview – Testes Internos (Sem Dev Client)
+
+eas build --profile preview --platform android
+Gera um .apk independente (sem precisar de Expo Dev Client)
+
+Ideal para compartilhar com outras pessoas para testes
+
+Pode ser instalado direto no celular
+
+Basta abrir o APK e o app funciona normalmente
+ Ver todos os builds no Expo
+Acesse:
+🔗 https://expo.dev/accounts/carolyne04
